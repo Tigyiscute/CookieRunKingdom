@@ -32,6 +32,28 @@
       gap: 8px;
     }
 
+    .registration-box input {
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .registration-box button {
+      background-color: #fff;
+      color: #ff6b81;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .registration-box button:hover {
+      background-color: #e63946;
+      color: white;
+    }
+
     header {
       background-color: #ff6b81;
       color: white;
@@ -75,33 +97,13 @@
       background-color: #f1f1f1;
       color: #555;
     }
-
-    .countdown {
-      font-weight: bold;
-      color: red;
-    }
-
-    .copy-btn {
-      background-color: #ff6b81;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .copy-btn:hover {
-      background-color: #e63946;
-    }
-
   </style>
 </head>
 <body>
 
 <div class="registration-box">
   <input type="email" id="email" placeholder="Enter DevPlay Email" />
-  <button onclick="registerEmail()">Register</button>
+  <button onclick="registerEmail()">Register Email</button>
   <button onclick="copyEmail()">Copy Email</button>
 </div>
 
@@ -113,41 +115,10 @@
 <main>
   <h2>Active Redeemable Codes</h2>
 
-  <div class="code">
-    <div>
-      <strong>CKXBCMINIGAME</strong><br>
-      10 Fateful Cookie Cutters, 3,000 Crystals, 3,000 Rainbow Cubes<br>
-      <span class="countdown" id="countdown1"></span>
-    </div>
-    <button class="copy-btn" onclick="copyCode('CKXBCMINIGAME')">Copy Code</button>
-  </div>
-
-  <div class="code">
-    <div>
-      <strong>CKBEASTSUCCESS05</strong><br>
-      20 Fateful Cookie Cutters<br>
-      <span class="countdown" id="countdown2"></span>
-    </div>
-    <button class="copy-btn" onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button>
-  </div>
-
-  <div class="code">
-    <div>
-      <strong>KINGDOM1MILLION</strong><br>
-      3,000 Crystals, 1,500 Rainbow Cubes<br>
-      <span class="countdown" id="countdown3"></span>
-    </div>
-    <button class="copy-btn" onclick="copyCode('KINGDOM1MILLION')">Copy Code</button>
-  </div>
-
-  <div class="code">
-    <div>
-      <strong>FIVEHUNDREDINSTA</strong><br>
-      3,000 Crystals, 1,500 Rainbow Cubes, 1,500 Choco Chalks<br>
-      <span class="countdown" id="countdown4"></span>
-    </div>
-    <button class="copy-btn" onclick="copyCode('FIVEHUNDREDINSTA')">Copy Code</button>
-  </div>
+  <div class="code"><strong>CKXBCMINIGAME</strong><button onclick="copyCode('CKXBCMINIGAME')">Copy Code</button></div>
+  <div class="code"><strong>CKBEASTSUCCESS05</strong><button onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button></div>
+  <div class="code"><strong>KINGDOM1MILLION</strong><button onclick="copyCode('KINGDOM1MILLION')">Copy Code</button></div>
+  <div class="code"><strong>FIVEHUNDREDINSTA</strong><button onclick="copyCode('FIVEHUNDREDINSTA')">Copy Code</button></div>
 
   <iframe src="https://coupon.devplay.com/coupon/ck/en" title="DevPlay Coupon Page"></iframe>
 
@@ -163,39 +134,34 @@
 </footer>
 
 <script>
+  function registerEmail() {
+    const email = document.getElementById('email').value;
+    if (email) {
+      localStorage.setItem('devplayEmail', email);
+      alert(`Email registered and saved: ${email}`);
+    } else {
+      alert('Please enter a valid email.');
+    }
+  }
+
+  function copyEmail() {
+    const email = localStorage.getItem('devplayEmail');
+    if (email) {
+      navigator.clipboard.writeText(email);
+      alert(`Email "${email}" copied to clipboard.`);
+    } else {
+      alert('No email registered yet.');
+    }
+  }
+
   function copyCode(code) {
     navigator.clipboard.writeText(code);
     alert(`Code "${code}" copied to clipboard.`);
   }
-
-  function getCountdown(endDate, elementId) {
-    const countdownElement = document.getElementById(elementId);
-    const endTime = new Date(endDate).getTime();
-
-    const interval = setInterval(function () {
-      const now = new Date().getTime();
-      const timeLeft = endTime - now;
-
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        countdownElement.innerHTML = "Expired";
-      } else {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-    }, 1000);
-  }
-
-  // Set countdowns
-  getCountdown("2025-05-31T23:59:00", "countdown1"); // Expiration for CKXBCMINIGAME
-  getCountdown("2025-05-31T23:59:00", "countdown2"); // Expiration for CKBEASTSUCCESS05
-  getCountdown("2025-05-31T23:59:00", "countdown3"); // Expiration for KINGDOM1MILLION
-  getCountdown("2025-05-19T07:59:00", "countdown4"); // Expiration for FIVEHUNDREDINSTA
 </script>
 
 </body>
 </html>
+
+
 
