@@ -47,21 +47,11 @@
       cursor: pointer;
     }
 
-    .registration-box button:hover {
-      background-color: #e63946;
-      color: white;
-    }
-
     header {
       background-color: #ff6b81;
       color: white;
       text-align: center;
       padding: 1rem 0;
-    }
-
-    header img {
-      max-width: 100%;
-      height: auto;
     }
 
     main {
@@ -75,7 +65,7 @@
       text-align: center;
     }
 
-    .code {
+    .code, .promo {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -87,30 +77,16 @@
       align-items: center;
     }
 
-    .code strong {
-      color: #2a9d8f;
-      font-size: 1.1em;
-    }
-
-    .button {
-      background-color: #ff6b81;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    .button:hover {
-      background-color: #e63946;
+    .promo h3 {
+      color: #e63946;
+      text-align: center;
     }
 
     iframe {
       width: 100%;
-      height: 100vh;
+      height: 400px;
       border: none;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     footer {
@@ -124,7 +100,6 @@
 </head>
 <body>
 
-<!-- Email Registration and Copy -->
 <div class="registration-box">
   <input type="email" id="email" placeholder="Enter DevPlay Email" />
   <button onclick="registerEmail()">Register</button>
@@ -140,35 +115,19 @@
   <h2>Active Redeemable Codes</h2>
 
   <div class="code">
-    <div>
-      <strong>CKXBCMINIGAME</strong><br>
-      10 Fateful Cookie Cutters, 3,000 Crystals, 3,000 Rainbow Cubes
-    </div>
-    <button class="button" onclick="copyCode('CKXBCMINIGAME')">Copy Code</button>
+    <strong>CKXBCMINIGAME</strong>
+    <button onclick="copyCode('CKXBCMINIGAME')">Copy Code</button>
   </div>
 
   <div class="code">
-    <div>
-      <strong>CKBEASTSUCCESS05</strong><br>
-      20 Fateful Cookie Cutters
-    </div>
-    <button class="button" onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button>
+    <strong>CKBEASTSUCCESS05</strong>
+    <button onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button>
   </div>
 
-  <div class="code">
-    <div>
-      <strong>KINGDOM1MILLION</strong><br>
-      3,000 Crystals, 1,500 Rainbow Cubes
-    </div>
-    <button class="button" onclick="copyCode('KINGDOM1MILLION')">Copy Code</button>
-  </div>
-
-  <div class="code">
-    <div>
-      <strong>FIVEHUNDREDINSTA</strong><br>
-      3,000 Crystals, 1,500 Rainbow Cubes, 1,500 Choco Chalks
-    </div>
-    <button class="button" onclick="copyCode('FIVEHUNDREDINSTA')">Copy Code</button>
+  <h2>Promotions</h2>
+  <div class="promo">
+    <h3>Click on the gnome holding the crystal</h3>
+    <iframe src="https://studiokingdom.co.kr/en/kingdom/" title="Promotion Page"></iframe>
   </div>
 
   <iframe src="https://coupon.devplay.com/coupon/ck/en" title="DevPlay Coupon Page"></iframe>
@@ -179,46 +138,8 @@
 </footer>
 
 <script>
-  // On page load, restore email if saved
-  window.onload = function () {
-    const savedEmail = localStorage.getItem('devplayEmail');
-    if (savedEmail) {
-      document.getElementById('email').value = savedEmail;
-    }
-  }
-
-  function registerEmail() {
-    const email = document.getElementById('email').value;
-    if (email) {
-      localStorage.setItem('devplayEmail', email);
-      alert(`Email registered and saved: ${email}`);
-    } else {
-      alert('Please enter a valid email.');
-    }
-  }
-
-  function copyEmail() {
-    const email = localStorage.getItem('devplayEmail');
-    if (email) {
-      const input = document.createElement('input');
-      input.value = email;
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand('copy');
-      document.body.removeChild(input);
-      alert(`Email "${email}" copied to clipboard.`);
-    } else {
-      alert('No email registered yet.');
-    }
-  }
-
   function copyCode(code) {
-    const input = document.createElement('input');
-    input.value = code;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    document.body.removeChild(input);
+    navigator.clipboard.writeText(code);
     alert(`Code "${code}" copied to clipboard.`);
   }
 </script>
