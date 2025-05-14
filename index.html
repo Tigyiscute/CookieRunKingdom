@@ -80,6 +80,21 @@
       font-weight: bold;
       color: red;
     }
+
+    .copy-btn {
+      background-color: #ff6b81;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #e63946;
+    }
+
   </style>
 </head>
 <body>
@@ -104,7 +119,7 @@
       10 Fateful Cookie Cutters, 3,000 Crystals, 3,000 Rainbow Cubes<br>
       <span class="countdown" id="countdown1"></span>
     </div>
-    <button onclick="copyCode('CKXBCMINIGAME')">Copy Code</button>
+    <button class="copy-btn" onclick="copyCode('CKXBCMINIGAME')">Copy Code</button>
   </div>
 
   <div class="code">
@@ -113,7 +128,7 @@
       20 Fateful Cookie Cutters<br>
       <span class="countdown" id="countdown2"></span>
     </div>
-    <button onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button>
+    <button class="copy-btn" onclick="copyCode('CKBEASTSUCCESS05')">Copy Code</button>
   </div>
 
   <div class="code">
@@ -122,7 +137,7 @@
       3,000 Crystals, 1,500 Rainbow Cubes<br>
       <span class="countdown" id="countdown3"></span>
     </div>
-    <button onclick="copyCode('KINGDOM1MILLION')">Copy Code</button>
+    <button class="copy-btn" onclick="copyCode('KINGDOM1MILLION')">Copy Code</button>
   </div>
 
   <div class="code">
@@ -131,7 +146,7 @@
       3,000 Crystals, 1,500 Rainbow Cubes, 1,500 Choco Chalks<br>
       <span class="countdown" id="countdown4"></span>
     </div>
-    <button onclick="copyCode('FIVEHUNDREDINSTA')">Copy Code</button>
+    <button class="copy-btn" onclick="copyCode('FIVEHUNDREDINSTA')">Copy Code</button>
   </div>
 
   <iframe src="https://coupon.devplay.com/coupon/ck/en" title="DevPlay Coupon Page"></iframe>
@@ -183,3 +198,4 @@
 
 </body>
 </html>
+
